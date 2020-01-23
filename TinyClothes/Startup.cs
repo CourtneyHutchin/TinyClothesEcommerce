@@ -41,7 +41,7 @@ namespace TinyClothes
             services.AddDbContext<StoreContext>
                 (
                     options =>
-                    options.UseSqlServer("connection")
+                    options.UseSqlServer(connection)
                 );
         }
 
