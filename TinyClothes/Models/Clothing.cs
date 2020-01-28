@@ -20,7 +20,7 @@ namespace TinyClothes.Models
         /// <summary>
         /// The size of the clothing
         /// </summary>
-        public int Size { get; set; }
+        public string Size { get; set; }
 
         /// <summary>
         /// The type of clothing, shirt, pants
