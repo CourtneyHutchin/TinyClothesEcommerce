@@ -19,10 +19,29 @@ namespace TinyClothes.Controllers
         }
 
         [HttpGet]
-        public IActionResult ShowAll()
+        public async Task<IActionResult> ShowAll(int? page)
         {
-            List<Clothing> clothes = new List<Clothing>(); // Just a placeholder
+            const int PageSize = 2;
+            // if page is not null, use its value... otherwise use 1
+            // int pageNumber = page.HasValue ? page.Value : 1;    
+            // NUll 
+            int pageNumber = page ?? 1; // same as above
+            ViewData["CurrentPage"] = pageNumber;
+            
+            int maxPage = await GetMaxPage(PageSize);
+
+            ViewData["MaxPage"] = maxPage;
+
+            List<Clothing> clothes = await ClothingDb.GetClothingByPage(_context, pageNum: pageNumber, pageSize: PageSize);
             return View(clothes);
+        }
+
+        private async Task<int> GetMaxPage(int PageSize)
+        {
+            int numProducts = await ClothingDb.GetNumClothing(_context);
+
+            int maxPage = Convert.ToInt32(Math.Ceiling((double)numProducts / PageSize));
+            return maxPage;
         }
 
         [HttpGet]
