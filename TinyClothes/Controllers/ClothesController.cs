@@ -26,6 +26,7 @@ namespace TinyClothes.Controllers
             // int pageNumber = page.HasValue ? page.Value : 1;    
             // NUll 
             int pageNumber = page ?? 1; // same as above
+            ViewData["CurrentPage"] = pageNumber;
             
             int maxPage = await GetMaxPage(PageSize);
 
