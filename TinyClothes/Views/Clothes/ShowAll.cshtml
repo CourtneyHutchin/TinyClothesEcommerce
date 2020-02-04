@@ -14,7 +14,7 @@
 <p>
     <a asp-action="Add" asp-controller="Clothes">Create New</a>
 </p>
-<table class="table">
+<table class="table table-hover table-active">
     <thead>
         <tr>
             <th>
@@ -43,7 +43,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="table-active">
             <td>
                 @Html.DisplayFor(modelItem => item.ItemId)
             </td>
