@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/CourtneyHutchin/TinyClothesEcommerce/workflows/.NET%20Core/badge.svg)
+
 # TinyClothesEcommerce
 In class website that resembles a clothing store. You will be able to login and purchase clothing items.
 This project was built using ASP.NET Core MVC.
