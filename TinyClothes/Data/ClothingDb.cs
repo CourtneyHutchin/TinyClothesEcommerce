@@ -56,6 +56,7 @@ namespace TinyClothes.Data
             //           .ToListAsync();
         }
 
+
         /// <summary>
         /// Returns a single clothing item or 
         /// null if there is no match
@@ -82,6 +83,13 @@ namespace TinyClothes.Data
             await context.AddAsync(c);         // prepares INSERT query
             await context.SaveChangesAsync();  // execute INSERT query
 
+            return c;
+        }
+        public static async Task<Clothing> Edit(Clothing c, StoreContext context)
+        {
+            await context.AddAsync(c);
+            context.Entry(c).State = EntityState.Modified;
+            await context.SaveChangesAsync();
             return c;
         }
     }
