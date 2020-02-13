@@ -41,6 +41,7 @@ namespace TinyClothes.Models
     {
         [Required]
         [StringLength(60)]
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
         [Required]
@@ -53,7 +54,10 @@ namespace TinyClothes.Models
         public string Password { get; set; }
 
         [Required]
+        [StringLength(150)]
+        [DataType(DataType.Password)]
         [Compare(nameof(Password))] // This is how we can make sure its the same password
+        [Display(Name  = "Confirm Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]
