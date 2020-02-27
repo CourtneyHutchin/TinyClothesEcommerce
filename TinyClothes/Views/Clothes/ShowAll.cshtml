@@ -67,11 +67,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            @{
+                // Get current URL path "/Clothes/ShowAll"
+				string previousUrl = http.HttpContext.Request.Path;
+                // Add query string "?page=2"
+                previousUrl += http.HttpContext.Request.QueryString.Value;
+            }
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ItemId" class="btn btn-primary">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.ItemId" class="btn btn-danger">Delete</a>
-                <a asp-action="Add" asp-controller="Cart" asp-route-id="@item.ItemId" asp-route-prevUrl="@http.HttpContext.Request.Path" class="btn btn-primary">Add to Cart</a>
-            </td> @*TODO: Keep page number in prev url*@
+                <a asp-action="Edit" asp-route-id="@item.ItemId" class="btn btn-primary" style="padding-left:8px; padding-right:8px;" >Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.ItemId" class="btn btn-danger" style="padding-left:8px; padding-right:8px;">Delete</a>
+                <a asp-action="Add" asp-controller="Cart" asp-route-id="@item.ItemId" asp-route-prevUrl="@http.HttpContext.Request.Path" class="btn btn-primary" style="padding-left:8px; padding-right:8px;">Add to Cart</a>
+            </td>
         </tr>
 }
     </tbody>
