@@ -8,6 +8,7 @@
     <title>@ViewData["Title"] - TinyClothes</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-lux.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
 </head>
 <body>
     <header>
@@ -51,6 +52,9 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <span class="fas fa-shopping-cart fa-2x">
+                @CartHelper.GetCount(sessionInfo)
+            </span>
             @RenderBody()
         </main>
     </div>
