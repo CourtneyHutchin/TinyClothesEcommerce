@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,16 +26,21 @@ namespace TinyClothes.Models
         /// <summary>
         /// The title of the product
         /// </summary>
+        [StringLength(150)]
         public string Title { get; set; }
 
         /// <summary>
         /// The minimum price for the product
         /// </summary>
+        [Range(0.0, double.MaxValue, ErrorMessage = "Min Price must be a positive number")]
+        [Display(Name = "Min Price")]
         public double? MinPrice { get; set; }
 
         /// <summary>
         /// The maximum price for the product
         /// </summary>
+        [Display(Name = "Max Price")]
+        [Range(0.0, double.MaxValue, ErrorMessage = "Max Value must be a positive number")]
         public double? MaxPrice { get; set; }
 
         /// <summary>

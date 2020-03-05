@@ -120,49 +120,53 @@ namespace TinyClothes.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(SearchCriteria search)
         {
-            // Prepare query - SELECT * FROM Clothes
-            // Does not get sent to DB
-            IQueryable<Clothing> allClothes = from c in _context.Clothing
-                                              select c;
-            // WHERE Price > MinPrice
-            if (search.MinPrice.HasValue)
+            if (ModelState.IsValid)
             {
-                allClothes = from c in allClothes
-                             where c.Price >= search.MinPrice
-                             select c;
-            }
+                // Prepare query - SELECT * FROM Clothes
+                // Does not get sent to DB
+                IQueryable<Clothing> allClothes = from c in _context.Clothing
+                                                  select c;
+                // WHERE Price > MinPrice
+                if (search.MinPrice.HasValue)
+                {
+                    allClothes = from c in allClothes
+                                 where c.Price >= search.MinPrice
+                                 select c;
+                }
 
-            // WHERE Price < MaxPrice
-            if (search.MaxPrice.HasValue)
-            {
-                allClothes = from c in allClothes
-                             where c.Price <= search.MaxPrice
-                             select c;
-            }
+                // WHERE Price < MaxPrice
+                if (search.MaxPrice.HasValue)
+                {
+                    allClothes = from c in allClothes
+                                 where c.Price <= search.MaxPrice
+                                 select c;
+                }
 
-            // If we are searching from something
-            if (!string.IsNullOrWhiteSpace(search.Size))
-            {
-                allClothes = from c in allClothes
-                             where c.Size == search.Size
-                             select c;
-            }
+                // If we are searching from something
+                if (!string.IsNullOrWhiteSpace(search.Size))
+                {
+                    allClothes = from c in allClothes
+                                 where c.Size == search.Size
+                                 select c;
+                }
 
-            if (!string.IsNullOrWhiteSpace(search.Type))
-            {
-                allClothes = from c in allClothes
-                             where c.Type == search.Type
-                             select c;
-            }
+                if (!string.IsNullOrWhiteSpace(search.Type))
+                {
+                    allClothes = from c in allClothes
+                                 where c.Type == search.Type
+                                 select c;
+                }
 
-            if (!string.IsNullOrWhiteSpace(search.Title))
-            {
-                allClothes = from c in allClothes
-                             where c.Title.Contains(search.Title)
-                             select c;
-            }
+                if (!string.IsNullOrWhiteSpace(search.Title))
+                {
+                    allClothes = from c in allClothes
+                                 where c.Title.Contains(search.Title)
+                                 select c;
+                }
 
-            search.Results = allClothes.ToList();
+                search.Results = allClothes.ToList();
+            }
+            
             return View(search);
         }
     }
