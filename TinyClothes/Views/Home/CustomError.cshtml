@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Error!!1";
+}
+
+<h1>Uh-oh</h1>
+
+@if (ViewData["ErrorMsg"] != null)
+{
+    <h2>@ViewData["ErrorMsg"]</h2>
+}
+else
+{
+    <h2>Something bad happened. Please try again later.</h2>
+}
+
+<img src="~/images/NotFound.jpg" class="img-thumbnail rounded" alt="Kid that is confused"/>

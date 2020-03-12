@@ -68,9 +68,14 @@ namespace TinyClothes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            Clothing c = await ClothingDb.GetClothingById(id, _context);
+            if(id == null)
+            {
+                // HTTP 400
+                return BadRequest();
+            }
+            Clothing c = await ClothingDb.GetClothingById(id.Value, _context);
 
             if (c == null) // Clothing item is not found in the DB
             {
