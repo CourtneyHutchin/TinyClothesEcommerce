@@ -42,3 +42,25 @@
         }
     }
 </ul>
+
+@section Scripts {
+    <script>
+		console.log("Add top cart script");
+		$("*[data-cart-button]").click(
+			function () {
+                // Stop <a> from navigating
+				event.preventDefault();
+
+				var currBtn = this;
+				console.log(currBtn);
+
+				var itemId = $(currBtn).attr("data-cart-itemid");
+
+				$.post("/Cart/AddJS", { id : itemId })
+					.done(function() {
+						alert("Cart item added");
+					});
+			});
+
+    </script>
+}
